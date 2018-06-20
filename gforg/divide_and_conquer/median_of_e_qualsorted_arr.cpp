@@ -60,10 +60,11 @@ int main() {
 	return 0;
 }
 
+
 int method1(int arr1[], int arr2[], int n) {
 
-	int num1, num2, i = 0, j = 0;
-	for(int k = 0; k < 2 * n; k++) {
+	int num1, num2, i = 0, j = 0, k;
+	for(k = 0; k < 2 * n; k++) {
 
 		if(arr1[i] <= arr2[j]) {
 			
@@ -91,14 +92,28 @@ int method1(int arr1[], int arr2[], int n) {
 		
 	}
 
+	/*
+	 * The below output statement informs how many iterations it took to find the median. It is printed  to correlate it with the conplexity of algorithm used.
+	 */
+
+	cout<<"Method1: Number of iterations: "<<k<<endl;
+
 	float median = (num1 + num2) / 2.0;
 
 	return median;
 }
 void method2(int n) {
 
+	static int call_count = 0;
+	call_count++;
+
 	if(n == 2) {
 
+		/*
+		 * Number of function calls made is a direct indication of complexity of algorithm used. Note that for this algorithm, the  number of function calls made will be very close to lg n value.
+		 */
+
+		cout<<"No. of function calls = "<<call_count<<endl;
 		median = (max(*top1, *top2) + min(*bottom1, *bottom2)) / 2;
 		return;
 	}
