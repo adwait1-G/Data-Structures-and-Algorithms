@@ -43,6 +43,12 @@ int main() {
 		sum[n-1][j] = value[n-1][j];
 	
 
+	for(int i = 0; i < n; i++) {
+		cout<<endl;
+		for(int j = 0; j <= i; j++)
+			cout<<sum[i][j]<<" ";
+	}
+
 	cout<<"Maximum sum = "<<find_max_sum(0, 0)<<endl;
 	
 	return 0;
@@ -67,19 +73,8 @@ int find_max_sum(int x, int y) {
 	if(sum[x+1][y+1] == -1)
 		sum[x+1][y+1] = value[x+1][y+1] + find_max_sum(x+1, y+1);
 
-	//Column 1. Special case because there is no diagonally down-left cell.
-	if(y == 0) {
 
-		sum[x][y] = value[x][y] + max(sum[x+1][y], sum[x+1][y+1]);
-		return sum[x][y];
-	}
-
-	//Compute diagonally down-left element if not computed before.
-	if(sum[x+1][y-1] == -1)
-		sum[x+1][y-1] = value[x+1][y-1] + find_max_sum(x+1, y-1);
-
-	
-	sum[x][y] = value[x][y] + max(sum[x+1][y], max(sum[x+1][y+1], sum[x+1][y-1]));
+	sum[x][y] = value[x][y] + max(sum[x+1][y], sum[x+1][y+1]);
 	return sum[x][y];
 }
 		
